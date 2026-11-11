@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run, tool } from '@openai/agents';
 import { z } from 'zod';
 
@@ -19,6 +19,7 @@ const executeSQL = tool({
 
 const sqlAgent = new Agent({
   name: 'SQL Expert Agent',
+  model: MODEL,
   tools: [executeSQL],
   instructions: `
           You are an expert SQL Agent that is specialized in generating SQL queries as per user request.

@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run } from '@openai/agents';
 
 const location = 'us';
@@ -12,7 +12,7 @@ const helloAgent = new Agent({
       return 'That just talk to the user';
     }
   },
-  model: 'gpt-4o-mini',
+  model: MODEL,
 });
 
 run(helloAgent, 'Hey There, My name is Piyush Garg').then((result) => {

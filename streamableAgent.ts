@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run, MCPServerStreamableHttp } from '@openai/agents';
 
 const githubMcpSever = new MCPServerStreamableHttp({
@@ -8,6 +8,7 @@ const githubMcpSever = new MCPServerStreamableHttp({
 
 const agent = new Agent({
   name: 'MCP Assistant',
+  model: MODEL,
   instructions: 'You must always use the MCP tools to answer questions.',
   mcpServers: [githubMcpSever],
 });

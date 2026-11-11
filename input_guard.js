@@ -1,9 +1,10 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run, InputGuardrailTripwireTriggered } from '@openai/agents';
 import { z } from 'zod';
 
 const mathInputAgent = new Agent({
   name: 'Math query checker',
+  model: MODEL,
   instructions: `
   You are an input guardrail agent that checks if the user query is a maths question or not
   Rules:
@@ -29,6 +30,7 @@ const mathInputGuardrail = {
 
 const mathsAgent = new Agent({
   name: 'Maths Agent',
+  model: MODEL,
   instructions: 'You are an expert maths ai agent',
   inputGuardrails: [mathInputGuardrail],
 });

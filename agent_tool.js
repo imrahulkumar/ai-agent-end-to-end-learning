@@ -1,3 +1,4 @@
+import { MODEL } from './local-llm.js';
 import { Agent, run, tool } from '@openai/agents';
 import { z } from 'zod';
 import axios from 'axios';
@@ -34,6 +35,7 @@ const sendEmailTool = tool({
 
 const agent = new Agent({
   name: 'Weather Agent',
+  model: MODEL,
   instructions: `
         You are an expert weather agent that helps user to tell weather report
     `,

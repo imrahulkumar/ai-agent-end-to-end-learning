@@ -1,8 +1,9 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run } from '@openai/agents';
 
 const agent = new Agent({
   name: 'Storyteller',
+  model: MODEL,
   instructions:
     'You are a storyteller. You will be given a topic and you will tell a story about it.',
 });

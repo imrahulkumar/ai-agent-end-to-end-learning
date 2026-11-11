@@ -1,9 +1,10 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run } from '@openai/agents';
 import { z } from 'zod';
 
 const sqlGuardrailAgent = new Agent({
   name: 'SQL Guardrail',
+  model: MODEL,
   instructions: `
         Check if query is safe to exceute. The query should be read only and do not modify, delete or drop any table
     `,
@@ -27,6 +28,7 @@ const sqlGuardrail = {
 
 const sqlAgent = new Agent({
   name: 'SQL Expert Agent',
+  model: MODEL,
   instructions: `
         You are an expert SQL Agent that is specialized in generating SQL queries as per user request.
 

@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, tool, run } from '@openai/agents';
 import { z } from 'zod';
 import axios from 'axios';
@@ -53,6 +53,7 @@ const sendEmailTool = tool({
 
 const agent = new Agent({
   name: 'Weather Email Agent',
+  model: MODEL,
   instructions: `You're an expert agent in getting weather info and sending it using email to the user`,
   tools: [getWeatherTool, sendEmailTool],
 });

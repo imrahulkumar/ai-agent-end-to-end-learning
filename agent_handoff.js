@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, tool, run } from '@openai/agents';
 import { RECOMMENDED_PROMPT_PREFIX } from '@openai/agents-core/extensions';
 import { z } from 'zod';
@@ -24,6 +24,7 @@ const processRefund = tool({
 
 const refundAgent = new Agent({
   name: 'Refund Agent',
+  model: MODEL,
   instructions: `You are expert in issuing refunds to the customer`,
   tools: [processRefund],
 });
@@ -44,6 +45,7 @@ const fetchAvailablePlans = tool({
 
 const salesAgent = new Agent({
   name: 'Sales Agent',
+  model: MODEL,
   instructions: `
           You are an expert sales agent for an internet broadband comapny.
           Talk to the user and help them with what they need.
@@ -59,6 +61,7 @@ const salesAgent = new Agent({
 
 const receptionAgent = new Agent({
   name: 'Reception Agent',
+  model: MODEL,
   instructions: `
   ${RECOMMENDED_PROMPT_PREFIX}
   You are the customer facing agent expert in understanding what customer needs and then route them or handoff them to the right agent`,

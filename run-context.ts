@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { MODEL } from './local-llm.js';
 import { Agent, run, tool, RunContext } from '@openai/agents';
 import { z } from 'zod';
 
@@ -24,6 +24,7 @@ const getUserInfoTool = tool({
 
 const customerSupportAgent = new Agent<MyContext>({
   name: 'Customer Support Agent',
+  model: MODEL,
   tools: [getUserInfoTool],
   instructions: ({ context }) => {
     return `You're an expert customer support agent`;
